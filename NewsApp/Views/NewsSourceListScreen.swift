@@ -21,9 +21,14 @@ struct NewsSourceListScreen: View {
             }
         }
         .listStyle(.plain)
-        .onAppear {
+        //MARK: - async await implementation
+        .task({
+            await newsSourceListViewModel.getSources()
+        })
+        //MARK: - Completion handler implementation
+         /*.onAppear {
              newsSourceListViewModel.getSources()
-         }
+         }*/
         .navigationTitle("News Sources")
         .navigationBarItems(trailing: Button(action: {
             // refresh the news
