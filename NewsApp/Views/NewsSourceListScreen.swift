@@ -22,7 +22,7 @@ struct NewsSourceListScreen: View {
         }
         .listStyle(.plain)
         //MARK: - async await implementation
-        .task({
+        .task ({
             await newsSourceListViewModel.getSources()
         })
         //MARK: - Completion handler implementation

@@ -14,17 +14,20 @@ struct NewsListScreen: View {
     
     var body: some View {
         
-        NavigationView {
-        
         List(newsArticleListViewModel.newsArticles, id: \.id) { newsArticle in
                 NewsArticleCell(newsArticle: newsArticle)
         }
         .listStyle(.plain)
+        //MARK: - async await implementation
+        .task ({
+            await newsArticleListViewModel.getNewsBy(sourceId: newsSource.id)
+        })
+        //MARK: - Completion handler implementation
+            /*
         .onAppear {
             newsArticleListViewModel.getNewsBy(sourceId: newsSource.id)
-        }
+        } */
         .navigationTitle(newsSource.name)
-        }
     }
 }
 
